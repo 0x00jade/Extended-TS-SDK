@@ -22,11 +22,11 @@
     "sdk",
     "typescript"
   ],
-  "author": "bvvvp009",
+  "author": "0x00jade",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Bvvvp009/Extended-TS-SDK.git"
+    "url": "https://github.com/0x00jade/Extended-TS-SDK.git"
   },
   "dependencies": {
     "decimal.js": "^10.4.3",

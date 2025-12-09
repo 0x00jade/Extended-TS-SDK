@@ -30,7 +30,7 @@ try {
   
   // Copy Node.js WASM files
   const nodePkgDir = path.join(wasmSignerDir, 'pkg');
-  const nodeFiles = ['stark_crypto_wasm.js', 'stark_crypto_wasm_bg.wasm', 'stark_crypto_wasm.d.ts'];
+  const nodeFiles = ['stark_crypto_wasm.js', 'stark_crypto_wasm_bg.wasm','stark_crypto_wasm_bg.wasm.d.ts', 'stark_crypto_wasm.d.ts'];
   
   nodeFiles.forEach(file => {
     const src = path.join(nodePkgDir, file);
@@ -46,43 +46,43 @@ try {
 }
 
 // Build browser/bundler target
-console.log('\n🌐 Building browser target...');
-try {
-  execSync('wasm-pack build --target bundler --out-dir pkg-web', {
-    cwd: wasmSignerDir,
-    stdio: 'inherit',
-  });
+// console.log('\n🌐 Building browser target...');
+// try {
+//   execSync('wasm-pack build --target bundler --out-dir pkg-web', {
+//     cwd: wasmSignerDir,
+//     stdio: 'inherit',
+//   });
   
-  // Copy browser WASM files with -web suffix
-  const webPkgDir = path.join(wasmSignerDir, 'pkg-web');
-  const webFiles = ['stark_crypto_wasm.js', 'stark_crypto_wasm_bg.wasm', 'stark_crypto_wasm.d.ts'];
+//   // Copy browser WASM files with -web suffix
+//   const webPkgDir = path.join(wasmSignerDir, 'pkg-web');
+//   const webFiles = ['stark_crypto_wasm.js', 'stark_crypto_wasm_bg.wasm', 'stark_crypto_wasm.d.ts'];
   
-  webFiles.forEach(file => {
-    const src = path.join(webPkgDir, file);
-    const baseName = path.basename(file, path.extname(file));
-    const ext = path.extname(file);
-    const dest = path.join(wasmOutputDir, `${baseName}-web${ext}`);
-    if (fs.existsSync(src)) {
-      fs.copyFileSync(src, dest);
-      console.log(`  ✓ Copied ${file} -> ${path.basename(dest)}`);
-    }
-  });
+//   webFiles.forEach(file => {
+//     const src = path.join(webPkgDir, file);
+//     const baseName = path.basename(file, path.extname(file));
+//     const ext = path.extname(file);
+//     const dest = path.join(wasmOutputDir, `${baseName}-web${ext}`);
+//     if (fs.existsSync(src)) {
+//       fs.copyFileSync(src, dest);
+//       console.log(`  ✓ Copied ${file} -> ${path.basename(dest)}`);
+//     }
+//   });
   
-  // Also copy web files without -web suffix for browser bundlers that expect standard names
-  // This allows bundlers to resolve wasm/stark_crypto_wasm.js in browser builds
-  const webFilesStandard = ['stark_crypto_wasm_bg.wasm'];
-  webFilesStandard.forEach(file => {
-    const src = path.join(webPkgDir, file);
-    const dest = path.join(wasmOutputDir, file);
-    if (fs.existsSync(src)) {
-      fs.copyFileSync(src, dest);
-      console.log(`  ✓ Copied ${file} (browser standard)`);
-    }
-  });
-} catch (error) {
-  console.error('❌ Failed to build browser target:', error.message);
-  process.exit(1);
-}
+//   // Also copy web files without -web suffix for browser bundlers that expect standard names
+//   // This allows bundlers to resolve wasm/stark_crypto_wasm.js in browser builds
+//   const webFilesStandard = ['stark_crypto_wasm_bg.wasm'];
+//   webFilesStandard.forEach(file => {
+//     const src = path.join(webPkgDir, file);
+//     const dest = path.join(wasmOutputDir, file);
+//     if (fs.existsSync(src)) {
+//       fs.copyFileSync(src, dest);
+//       console.log(`  ✓ Copied ${file} (browser standard)`);
+//     }
+//   });
+// } catch (error) {
+//   console.error('❌ Failed to build browser target:', error.message);
+//   process.exit(1);
+// }
 
 console.log('\n✅ WASM signer build complete!');
 console.log(`   Output: ${wasmOutputDir}`);
