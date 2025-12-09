@@ -30,7 +30,7 @@ try {
   
   // Copy Node.js WASM files
   const nodePkgDir = path.join(wasmSignerDir, 'pkg');
-  const nodeFiles = ['stark_crypto_wasm.js', 'stark_crypto_wasm_bg.wasm','stark_crypto_wasm_bg.wasm.d.ts', 'stark_crypto_wasm.d.ts'];
+  const nodeFiles = ['stark_crypto_wasm.js','stark_crypto_wasm_bg.js', 'stark_crypto_wasm_bg.wasm','stark_crypto_wasm_bg.wasm.d.ts', 'stark_crypto_wasm.d.ts'];
   
   nodeFiles.forEach(file => {
     const src = path.join(nodePkgDir, file);

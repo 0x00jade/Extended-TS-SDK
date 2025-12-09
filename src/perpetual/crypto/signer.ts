@@ -62,7 +62,7 @@ export async function initWasm(): Promise<void> {
       const possiblePaths = [
         path.join(__dirname, '../../wasm/stark_crypto_wasm'),
         path.join(process.cwd(), 'wasm/stark_crypto_wasm'),
-        path.join(process.cwd(), 'node_modules/extended-typescript-sdk/wasm/stark_crypto_wasm'),
+        path.join(process.cwd(), 'node_modules/xtnd-typescript-sdk/wasm/stark_crypto_wasm'),
         // Fallback to build directory (for development)
         path.join(__dirname, '../../wasm-signer/pkg/stark_crypto_wasm'),
         path.join(process.cwd(), 'wasm-signer/pkg/stark_crypto_wasm'),
